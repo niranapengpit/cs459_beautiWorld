@@ -1,0 +1,246 @@
+<html>
+   <head>
+   <style>
+   
+	/* Add a black background color to the top navigation */
+	.topnav {
+		overflow: hidden;
+		border: 1px solid white;
+		font-style:italic;
+	}
+	
+	.leftbar {
+		overflow: hidden;
+		border: 2px solid Black;
+	}
+
+	/* Style the links inside the navigation bar */
+	.topnav a {
+		float: left;
+		color: black;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		font-size: 17px;
+	}
+
+	/* Change the color of links on hover */
+	.topnav a:hover {
+		background-color: #e2b5e0;
+		color: black;
+	}
+
+	/* Add a color to the active/current link */
+	.topnav a.active {
+		background-color: #ad80ad;
+		color: white;
+	}
+	
+	/* The sidebar menu */
+.sidenav {
+  border: 2px solid Black;
+  width: 160px; /* Set the width of the sidebar */
+  position: absolute;
+  z-index: 1; /* Stay on top */
+  top: 610; /* Stay at the top */
+  left: 8;
+  background-color: white;
+	overflow-x: hidden; /* Disable horizontal scroll */
+	font-style:italic;
+}
+
+/* The navigation menu links */
+.sidenav a {
+	padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+	display: block;
+	text-align: center;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+.grid-container {
+  display: grid;
+  width: 80%;
+  margin-left: 170px;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+   </style>
+   
+   </head>
+	 <body background="https://www.img.in.th/images/ea1f79479cb198ce719d05be485b7bcb.gif">
+	<p align="right">You are not logged in</p>
+	<p align="right"><a align="right" href="{% url 'login'%}">Login</a></p> 
+	<p align="right"><a align="right" href="{% url 'signup'%}">Register</a></p>
+	<p align="right"><img src="{{ MEDIA_URL }}/icon/cart.png" width="32" height="32"><a href="#">Shopping cart 0</a></p>
+	<p align="right"><a href="#">Clear cart</a></p>
+	
+	<h1 align="center"><img src="https://www.img.in.th/images/4326aaa7ac34773ae30b62774f04570e.png" alt="4326aaa7ac34773ae30b62774f04570e.png" border="0" /></h1>
+	
+	<div class="topnav" style="background-color:#ff9999;">
+	<a class="active" href="{% url 'home' filter=0 %}">Product</a>
+	<a href="#news">Promotion</a>
+	<a href="#contact">How to order</a>
+	<a href="#about">Contact</a>
+	<h4 align="right" style="margin:auto;vertical-align: middle;">Search<input type="text"></h4>
+	</div>
+	<div class="sidenav">
+	<h3 color="black" style="margin-left: 40px;">Categories</h3>
+	{% if filter == '0' %}
+	<a href="{% url 'home' filter=0 %}" style="color: black;">All</a>
+	{% else %}
+	<a href="{% url 'home' filter=0 %}">All</a>
+	{% endif %}
+	{% if filter == '1' %}
+	<a href="{% url 'home' filter=1 %}" style="color: black;">Skincare</a>
+	{% else %}
+	<a href="{% url 'home' filter=1 %}">Skincare</a>
+	{% endif %}
+	{% if filter == '2' %}
+	<a href="{% url 'home' filter=2 %}" style="color: black;">Cleansing</a>
+	{% else %}
+	<a href="{% url 'home' filter=2 %}">Cleansing</a>
+	{% endif %}
+	{% if filter == '3' %}
+	<a href="{% url 'home' filter=3 %}" style="color: black;">Makeup</a>
+	{% else %}
+	<a href="{% url 'home' filter=3 %}">Makeup</a>
+	{% endif %}
+	{% if filter == '4' %}
+	<a href="{% url 'home' filter=4 %}" style="color: black;">Vitamin</a>
+	{% else %}
+	<a href="{% url 'home' filter=4 %}">Vitamin</a>
+	{% endif %}
+
+	</div>	
+	
+	{% if cate != None%}
+	<h1 align="center">{{ cate }}</h1>
+	{% else %}
+	<h1 align="center">ALL PRODUCTS</h1>
+	{% endif %}
+	
+	{% if data|length == 0%}
+	<h1 align="center">No products in this category</h1>
+	{% else %}
+	<div class="grid-container">
+	{% for p in data %}
+	<div class="grid-item">
+		<img src ="{{ MEDIA_URL }}/{{ p.producticon }}" width="128" height="128">
+		<h6>{{p.name}}</h6>
+		<h6>price {{p.price}} THB</h6>
+		<button type="submit" onclick="buy()">Buy</button>
+	</div>
+	{% endfor %}
+	{% endif %}
+	</div>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal" style="display:none;">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<p>You have successfully added  to the cart!</p>
+		</div>
+	</div>
+	 
+   <script>
+	   // Get the modal
+		var modal = document.getElementById('myModal');
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		function hidemodal()
+		{
+			console.log("modal close");
+			modal.style.display = "none";
+		}
+
+		function buy(){
+			console.log("modal open");
+			modal.style.display = "block";
+		}
+	window.onload = function(){
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() 
+		{
+			modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+	</script>
+    </body>
+</html>
